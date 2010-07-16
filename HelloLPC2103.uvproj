@@ -405,6 +405,11 @@
               <FileType>1</FileType>
               <FilePath>.\src\uart0.c</FilePath>
             </File>
+            <File>
+              <FileName>rtc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\rtc.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

@@ -8,15 +8,35 @@
 #include "main.h"
 #include "delay.h"
 #include "uart0.h"
+#include "rtc.h"
 
-enum SEND_ME{
-	SEND_STR,
-	SEND_STUFF,	
-};
 
-// Global variables
-uint8_t *sendMeStr = "brunql: Hello, World!\n";
-uint8_t state = SEND_STR;
+/*
+ * Local functions
+ */
+
+void UART0_PutRTC_Time(void)
+{	
+	UART0_PutNumberUInt8Decimal( HOUR );
+	UART0_PutChar( ':' );
+	UART0_PutNumberUInt8Decimal( MIN );
+	UART0_PutChar( ':' );
+	UART0_PutNumberUInt8Decimal( SEC );
+}
+
+void UART0_PutRTC_Data(void)
+{
+	UART0_PutNumberUInt8Decimal( DOM );
+	UART0_PutChar( '.' );
+	UART0_PutNumberUInt8Decimal( MONTH );
+	UART0_PutChar( '.' );
+	UART0_PutNumberUInt8Decimal( YEAR );
+}
+
+
+/* 
+ * Interrupts service routines
+ */
 
 // Default ISR vector
 void DefVectAddr_ISR(void) __irq
@@ -35,22 +55,11 @@ void ExInt1_Button_ISR(void) __irq
 
 	if(!(IOPIN & EXINT1_PIN_BIT_VALUE)){ // falling-edge?
 		 
-		switch(state++){
-			case SEND_STR: 
-				UART0_PutString(sendMeStr);
-				break;
-			case SEND_STUFF:
-				for(uint8_t i=0; i < 10; i++){
-					UART0_PutNumberUInt8Decimal(i);
-					UART0_PutChar(' ');
-		 		}
-				UART0_PutChar('\n');
-				break;
-			default:
-				state = SEND_STR;
-				UART0_PutString("Inline string test.\n");
-				break;
-		}
+		UART0_PutString("ARM RTC Date time: ");
+		UART0_PutRTC_Data();
+		UART0_PutChar(' ');
+		UART0_PutRTC_Time();
+		UART0_PutChar('\n');
 
 	}
 
@@ -62,6 +71,23 @@ void ExInt1_Button_ISR(void) __irq
 	//           to update the priority hardware."
 	VICVectAddr = 0x00000000;
 }
+
+void RTC_ISR(void) __irq 
+{	
+	UART0_PutString("ARM Real Time Clock: ");
+	UART0_PutRTC_Time();
+	UART0_PutChar( '\n' );
+
+	ILR = ILR; // Clear interrupt flag(s)
+	VICVectAddr = 0x00000000; // Clear interrupt address
+}
+
+
+
+
+/*
+ * Initialize functions
+ */
 
 void ButtonIRQ_Init(void)
 {
@@ -76,11 +102,14 @@ void VIC_IRQs_Init(void)
 	VICProtection 	= 0x00000000; // VIC registers can be accessed in User or Privileged mode
 	VICDefVectAddr  = (unsigned long)DefVectAddr_ISR; // Default interrupt vector
 
+	VICVectAddr0 = (unsigned long)RTC_ISR;
+	VICVectCntl0 = IRQ_SLOT_EN_BIT_VALUE | RTC_VIC_BIT_NUMBER; // IRQ Slot enable on RTC
+
 	VICVectAddr1   = (unsigned long)ExInt1_Button_ISR;
 	VICVectCntl1 = IRQ_SLOT_EN_BIT_VALUE | EINT1_VIC_BIT_NUMBER; // IRQ Slot enable on button
 	
 	VICIntSelect = 0x00000000; // All IRQ
-	VICIntEnable = EINT1_VIC_BIT_VALUE; // External interrupt EINT1 P0.14 ON
+	VICIntEnable = RTC_VIC_BIT_VALUE | EINT1_VIC_BIT_VALUE; // External interrupt EINT1 P0.14 ON
 
 	VICVectAddr = 0x00000000; // Clear interrupt address	
 
@@ -101,9 +130,10 @@ void GPIO_Init(void)
 
 int main(void)
 {
-	GPIO_Init();		// Led ON, UART0, EINT1
-	ButtonIRQ_Init(); 	// Button interrupt on falling edge
-	UART0_Init(); 			// Baud rate 9600, 8N1
+	GPIO_Init();		// Led, UART0, EINT1
+	ButtonIRQ_Init(); 	// Button: interrupt on falling edge
+	UART0_Init();		// Baud rate 9600, 8N1
+	RTC_Init();			// Real time clock init: interrupt each second
 	VIC_IRQs_Init(); 	// RTC, ExInt1 P0.14
 
 	for(;;){  		
