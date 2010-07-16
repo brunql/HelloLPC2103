@@ -270,10 +270,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>14</ColumnNumber>
+      <ColumnNumber>11</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>7</TopLine>
-      <CurrentLine>17</CurrentLine>
+      <TopLine>18</TopLine>
+      <CurrentLine>35</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\src\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
@@ -291,6 +291,20 @@
       <bDave2>0</bDave2>
       <PathWithFileName>.\src\Startup.s</PathWithFileName>
       <FilenameWithoutPath>Startup.s</FilenameWithoutPath>
+    </File>
+    <File>
+      <GroupNumber>1</GroupNumber>
+      <FileNumber>0</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>1</tvExp>
+      <Focus>0</Focus>
+      <ColumnNumber>32</ColumnNumber>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <TopLine>42</TopLine>
+      <CurrentLine>54</CurrentLine>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\src\uart0.c</PathWithFileName>
+      <FilenameWithoutPath>uart0.c</FilenameWithoutPath>
     </File>
   </Group>
 
@@ -324,6 +338,32 @@
     <PathWithFilename>X:\ARM\UVISION\HELLOLPC2103\INC\main.h</PathWithFilename>
     <TopLine>1</TopLine>
     <CurrentLine>22</CurrentLine>
+    <Constant>0</Constant>
+    <WindowPosition>
+      <length>0</length>
+      <flags>0</flags>
+      <showCmd>0</showCmd>
+      <MinPosition>
+        <xPos>0</xPos>
+        <yPos>0</yPos>
+      </MinPosition>
+      <MaxPosition>
+        <xPos>0</xPos>
+        <yPos>0</yPos>
+      </MaxPosition>
+      <NormalPosition>
+        <Top>0</Top>
+        <Left>0</Left>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </NormalPosition>
+    </WindowPosition>
+  </AlienFiles>
+
+  <AlienFiles>
+    <PathWithFilename>X:\ARM\UVISION\HELLOLPC2103\INC\uart0.h</PathWithFilename>
+    <TopLine>5</TopLine>
+    <CurrentLine>15</CurrentLine>
     <Constant>0</Constant>
     <WindowPosition>
       <length>0</length>
@@ -1691,9 +1731,9 @@
       <Documents>
         <Doc>
           <Name>.\src\main.c</Name>
-          <ColumnNumber>14</ColumnNumber>
-          <TopLine>7</TopLine>
-          <CurrentLine>17</CurrentLine>
+          <ColumnNumber>11</ColumnNumber>
+          <TopLine>18</TopLine>
+          <CurrentLine>35</CurrentLine>
         </Doc>
         <Doc>
           <Name>.\inc\main.h</Name>
@@ -1718,6 +1758,18 @@
           <ColumnNumber>28</ColumnNumber>
           <TopLine>392</TopLine>
           <CurrentLine>392</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>.\inc\uart0.h</Name>
+          <ColumnNumber>31</ColumnNumber>
+          <TopLine>5</TopLine>
+          <CurrentLine>15</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>.\src\uart0.c</Name>
+          <ColumnNumber>32</ColumnNumber>
+          <TopLine>42</TopLine>
+          <CurrentLine>54</CurrentLine>
         </Doc>
       </Documents>
     </MDIGroup>

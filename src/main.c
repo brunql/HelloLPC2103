@@ -7,12 +7,23 @@
 
 #include "main.h"
 #include "delay.h"
+#include "uart0.h"
+
+enum SEND_ME{
+	SEND_STR,
+	SEND_STUFF,	
+};
+
+// Global variables
+uint8_t *sendMeStr = "brunql: Hello, World!\n";
+uint8_t state = SEND_STR;
 
 // Default ISR vector
 void DefVectAddr_ISR(void) __irq
 {
 	__disable_irq();
 	VICIntEnClr = 0xffffffff;
+	UART0_PutString("Error: Hello from DefVectAddr_ISR...\n");
 	for(;;){ 
 		LED_BLINK( 50 );
 	}
@@ -20,10 +31,27 @@ void DefVectAddr_ISR(void) __irq
 
 void ExInt1_Button_ISR(void) __irq 
 {
-	delay_ms(10); // Anti rattle delay
+	delay_ms(20); // Anti rattle delay
 
 	if(!(IOPIN & EXINT1_PIN_BIT_VALUE)){ // falling-edge?
-		LED_BLINK( 100 );
+		 
+		switch(state++){
+			case SEND_STR: 
+				UART0_PutString(sendMeStr);
+				break;
+			case SEND_STUFF:
+				for(uint8_t i=0; i < 10; i++){
+					UART0_PutNumberUInt8Decimal(i);
+					UART0_PutChar(' ');
+		 		}
+				UART0_PutChar('\n');
+				break;
+			default:
+				state = SEND_STR;
+				UART0_PutString("Inline string test.\n");
+				break;
+		}
+
 	}
 
 	// Clear interrupt flag
@@ -64,7 +92,7 @@ void GPIO_Init(void)
 {
 	SCS = 0; // Disable FastIO
 
-	PINSEL0 = PINSEL0_EINT1_VALUE; 
+	PINSEL0 = PINSEL0_EINT1_VALUE | PINSEL0_UART0_BIT_VALUE; 
 	PINSEL1 = 0x00000000;
 	
 	IODIR = LED_BIT_VALUE; // Led initialize
@@ -75,6 +103,7 @@ int main(void)
 {
 	GPIO_Init();		// Led ON, UART0, EINT1
 	ButtonIRQ_Init(); 	// Button interrupt on falling edge
+	UART0_Init(); 			// Baud rate 9600, 8N1
 	VIC_IRQs_Init(); 	// RTC, ExInt1 P0.14
 
 	for(;;){  		
