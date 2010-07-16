@@ -256,10 +256,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>26</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>9</TopLine>
-      <CurrentLine>27</CurrentLine>
+      <TopLine>6</TopLine>
+      <CurrentLine>33</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\src\delay.c</PathWithFileName>
       <FilenameWithoutPath>delay.c</FilenameWithoutPath>
@@ -272,8 +272,8 @@
       <Focus>0</Focus>
       <ColumnNumber>14</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>20</CurrentLine>
+      <TopLine>7</TopLine>
+      <CurrentLine>17</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\src\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
@@ -286,8 +286,8 @@
       <Focus>0</Focus>
       <ColumnNumber>28</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>115</TopLine>
-      <CurrentLine>128</CurrentLine>
+      <TopLine>392</TopLine>
+      <CurrentLine>392</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\src\Startup.s</PathWithFileName>
       <FilenameWithoutPath>Startup.s</FilenameWithoutPath>
@@ -296,8 +296,8 @@
 
   <AlienFiles>
     <PathWithFilename>X:\ARM\UVISION\HELLOLPC2103\INC\delay.h</PathWithFilename>
-    <TopLine>3</TopLine>
-    <CurrentLine>26</CurrentLine>
+    <TopLine>1</TopLine>
+    <CurrentLine>23</CurrentLine>
     <Constant>0</Constant>
     <WindowPosition>
       <length>0</length>
@@ -323,7 +323,7 @@
   <AlienFiles>
     <PathWithFilename>X:\ARM\UVISION\HELLOLPC2103\INC\main.h</PathWithFilename>
     <TopLine>1</TopLine>
-    <CurrentLine>4</CurrentLine>
+    <CurrentLine>22</CurrentLine>
     <Constant>0</Constant>
     <WindowPosition>
       <length>0</length>
@@ -1692,32 +1692,32 @@
         <Doc>
           <Name>.\src\main.c</Name>
           <ColumnNumber>14</ColumnNumber>
-          <TopLine>1</TopLine>
-          <CurrentLine>20</CurrentLine>
+          <TopLine>7</TopLine>
+          <CurrentLine>17</CurrentLine>
         </Doc>
         <Doc>
           <Name>.\inc\main.h</Name>
-          <ColumnNumber>26</ColumnNumber>
+          <ColumnNumber>28</ColumnNumber>
           <TopLine>1</TopLine>
-          <CurrentLine>4</CurrentLine>
+          <CurrentLine>22</CurrentLine>
         </Doc>
         <Doc>
           <Name>.\src\delay.c</Name>
-          <ColumnNumber>26</ColumnNumber>
-          <TopLine>9</TopLine>
-          <CurrentLine>27</CurrentLine>
+          <ColumnNumber>0</ColumnNumber>
+          <TopLine>6</TopLine>
+          <CurrentLine>33</CurrentLine>
         </Doc>
         <Doc>
           <Name>.\inc\delay.h</Name>
-          <ColumnNumber>26</ColumnNumber>
-          <TopLine>3</TopLine>
-          <CurrentLine>26</CurrentLine>
+          <ColumnNumber>31</ColumnNumber>
+          <TopLine>1</TopLine>
+          <CurrentLine>23</CurrentLine>
         </Doc>
         <Doc>
           <Name>.\src\Startup.s</Name>
           <ColumnNumber>28</ColumnNumber>
-          <TopLine>115</TopLine>
-          <CurrentLine>128</CurrentLine>
+          <TopLine>392</TopLine>
+          <CurrentLine>392</CurrentLine>
         </Doc>
       </Documents>
     </MDIGroup>

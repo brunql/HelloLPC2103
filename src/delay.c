@@ -13,8 +13,8 @@ void delay_ms(unsigned ms)
 	if(ms > MAX_DELAY_MS_VALUE){
 		ms = 93; // show must go on
 	}
-	ms = (unsigned)((float)ms * TICKS_IN_ONE_MS);
-	for(unsigned i=0; i < ms; i++){ 
+	ms = (unsigned)((double)ms * TICKS_IN_ONE_MS);
+	for(; ms-- ;){ 
 		// lets do nothing
 	}
 }								
@@ -25,9 +25,8 @@ void delay_us(unsigned us)
 		us = 93; // show must go on
 	}
 	us -= MIN_DELAY_uS_VALUE;
-	us = (unsigned)((float)us * TICKS_IN_ONE_uS);
-	for(unsigned i=0; i < us; i++){ 
+	us = (unsigned) ((double)us * TICKS_IN_ONE_uS);
+	for(; us-- ;){ 
 		// lets do nothing
 	}
 }
-
